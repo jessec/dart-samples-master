@@ -1,0 +1,13 @@
+# Dart Editor
+*.dart.js
+*.dart.js.map
+*.dart.js.deps
+
+# pub
+packages
+build
+
+#other
+.settings
+.buildlog
+.DS_Store
