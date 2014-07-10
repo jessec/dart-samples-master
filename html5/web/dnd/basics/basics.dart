@@ -1,10 +1,3 @@
-// Copyright (c) 2012, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the COPYING file.
-
-// This is a port of "Native HTML5 Drag and Drop" to Dart.
-// See: http://www.html5rocks.com/en/tutorials/dnd/basics/
-
 
 import 'dart:html';
 
@@ -20,7 +13,14 @@ class Basics {
       col.onDragOver.listen(_onDragOver);
       col.onDragLeave.listen(_onDragLeave);
       col.onDrop.listen(_onDrop);
+      col.onClick.listen(_onClickResize);
     }
+  }
+
+
+  void _onClickResize(MouseEvent event) {
+    Element resizeTarget = event.target;
+    resizeTarget.style.setProperty('overflow', 'auto');
   }
 
   void _onDragStart(MouseEvent event) {
@@ -64,12 +64,9 @@ class Basics {
     Element dropTarget = event.target;
     if (_dragSourceEl != dropTarget) {
       // Set the source column's HTML to the HTML of the column we dropped on.
-      //_dragSourceEl.innerHtml = dropTarget.innerHtml;
-      //dropTarget.innerHtml = event.dataTransfer.getData('text/html');
-      
+      _dragSourceEl.style.setProperty('overflow', 'visible');
       _dragSourceEl.setInnerHtml(dropTarget.innerHtml, treeSanitizer: new NullTreeSanitizer());
-      dropTarget.setInnerHtml(event.dataTransfer.getData('text/html'), treeSanitizer: new NullTreeSanitizer()); 
-      
+      dropTarget.setInnerHtml(event.dataTransfer.getData('text/html'), treeSanitizer: new NullTreeSanitizer());
     }
   }
 }
