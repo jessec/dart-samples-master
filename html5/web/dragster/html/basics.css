@@ -13,12 +13,17 @@ body {
 }
 
 #columns {
-  margin: auto;
-  height: 1020px;
-  width: 960px;
-  background: #cca;
-  resize: both;
-  overflow:auto;
+margin: auto;
+height: 1020px;
+
+background: #cca;
+resize: both;
+overflow: auto;
+position: absolute;
+top: 0px;
+left: 50%;
+width: 960px;
+margin-left: -480px;
 }
 
 /* Prevent the text contents of draggable elements from being selectable. */

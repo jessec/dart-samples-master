@@ -57,14 +57,12 @@ packages:
     description: logging
     source: hosted
     version: "0.9.1+1"
-  matcher:
-    description: matcher
-    source: hosted
-    version: "0.10.1+1"
-  mock:
-    description: mock
-    source: hosted
-    version: "0.10.0+1"
+  menu:
+    description:
+      path: "C:\\Users\\rcooke\\git\\dart-samples-master\\html5\\web\\dragster\\html\\menu"
+      relative: false
+    source: path
+    version: "0.0.0"
   observe:
     description: observe
     source: hosted
@@ -101,10 +99,6 @@ packages:
     description: template_binding
     source: hosted
     version: "0.10.0"
-  unittest:
-    description: unittest
-    source: hosted
-    version: "0.10.1+2"
   utf:
     description: utf
     source: hosted

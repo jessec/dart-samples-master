@@ -1,5 +1,6 @@
 
 import 'dart:html';
+import "package:menu/menu.dart";
 
 class Basics {
   Element _dragSourceEl;
@@ -15,6 +16,11 @@ class Basics {
       col.onDrop.listen(_onDrop);
       col.onClick.listen(_onClickResize);
     }
+    
+    Widget widget = new WidgetImpl();
+    num x = widget.getX();
+    print(x);
+    
   }
 
 
