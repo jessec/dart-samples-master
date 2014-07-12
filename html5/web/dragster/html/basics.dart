@@ -47,8 +47,22 @@ class Basics {
       case '1280':
         _resizeScreen('1280');
         break;
+      case 'load':
+        _load();
+        break;
+      case 'save':
+        _save();
+        break;
     }
     
+  }
+  
+  void _load(){
+    print('load');  
+  }
+  
+  void _save(){
+    print('save');
   }
   
   void _resizeScreen(String strSize){
