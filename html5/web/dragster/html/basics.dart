@@ -6,6 +6,12 @@ class Basics {
   Element _dragSourceEl;
 
   void start() {
+    
+    var menuItems = document.querySelector('menu').children;
+    for(var item in menuItems){
+      item.onClick.listen(_onClickMenuItem);
+    }
+
     var cols = document.querySelectorAll('#columns .column');
     for (var col in cols) {
       col.onDragStart.listen(_onDragStart);
@@ -23,11 +29,38 @@ class Basics {
     
   }
 
+  void _onClickMenuItem(MouseEvent event) {
+    Element menuTarget = event.target;
+    switch (menuTarget.innerHtml) {
+      case '320':
+        _resizeScreen('320');
+        break;
+      case '640':
+        _resizeScreen('640');
+        break;
+      case '768':
+        _resizeScreen('768');
+        break;
+      case '960':
+        _resizeScreen('960');
+        break;
+      case '1280':
+        _resizeScreen('1280');
+        break;
+    }
+    
+  }
+  
+  void _resizeScreen(String strSize){
+    int intSize = int.parse(strSize);
+    document.querySelector('#columns').style.setProperty('width', '${strSize}px');
+    document.querySelector('#columns').style.setProperty('margin-left', '-${intSize / 2}px');
+  }
 
   void _onClickResize(MouseEvent event) {
     Element resizeTarget = event.target;
-    String name = resizeTarget.tagName;
-    if(name != "CONTENT"){
+    String name = resizeTarget.className;
+    if(name != "content"){
       print("content");
       resizeTarget.style.setProperty('overflow', 'auto');
     }else{
