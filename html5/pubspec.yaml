@@ -12,4 +12,4 @@ dependencies:
   polymer: any
   vector_math: any
   menu:
-    path: C:\Users\rcooke\git\dart-samples-master\html5\web\dragster\html\menu
+    path: web/dragster/html/menu/
