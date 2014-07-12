@@ -1,15 +1,15 @@
-
 import 'dart:html';
 import "package:menu/menu.dart";
 
 class Basics {
   Element _dragSourceEl;
   Element columns = document.querySelector('#columns');
-  
+  String apiBaseUrl = 'http://localhost:8080/api/';
+
   void start() {
-    
+
     var menuItems = document.querySelector('menu').children;
-    for(var item in menuItems){
+    for (var item in menuItems) {
       item.onClick.listen(_onClickMenuItem);
     }
 
@@ -23,11 +23,11 @@ class Basics {
       col.onDrop.listen(_onDrop);
       col.onClick.listen(_onClickResize);
     }
-    
+
     Widget widget = new WidgetImpl();
     num x = widget.getX();
     print(x);
-    
+
   }
 
   void _onClickMenuItem(MouseEvent event) {
@@ -55,18 +55,18 @@ class Basics {
         _save();
         break;
     }
-    
+
   }
-  
-  void _load(){
-    print('load');  
+
+  void _load() {
+    print('load');
   }
-  
-  void _save(){
+
+  void _save() {
     print('save');
   }
-  
-  void _resizeScreen(String strSize){
+
+  void _resizeScreen(String strSize) {
     int intSize = int.parse(strSize);
     columns.style.setProperty('width', '${strSize}px');
     columns.style.setProperty('margin-left', '-${intSize / 2}px');
@@ -75,13 +75,13 @@ class Basics {
   void _onClickResize(MouseEvent event) {
     Element resizeTarget = event.target;
     String name = resizeTarget.className;
-    if(name != "content"){
+    if (name != "content") {
       print("content");
       resizeTarget.style.setProperty('overflow', 'auto');
-    }else{
+    } else {
       resizeTarget.parent.style.setProperty('overflow', 'auto');
     }
-    
+
   }
 
   void _onDragStart(MouseEvent event) {
@@ -108,7 +108,6 @@ class Basics {
   }
 
   void _onDragOver(MouseEvent event) {
-    // This is necessary to allow us to drop.
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
   }
@@ -119,13 +118,9 @@ class Basics {
   }
 
   void _onDrop(MouseEvent event) {
-    // Stop the browser from redirecting.
     event.stopPropagation();
-
-    // Don't do anything if dropping onto the same column we're dragging.
     Element dropTarget = event.target;
     if (_dragSourceEl != dropTarget) {
-      // Set the source column's HTML to the HTML of the column we dropped on.
       _dragSourceEl.style.setProperty('overflow', 'visible');
       _dragSourceEl.setInnerHtml(dropTarget.innerHtml, treeSanitizer: new NullTreeSanitizer());
       dropTarget.setInnerHtml(event.dataTransfer.getData('text/html'), treeSanitizer: new NullTreeSanitizer());
