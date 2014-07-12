@@ -4,7 +4,8 @@ import "package:menu/menu.dart";
 
 class Basics {
   Element _dragSourceEl;
-
+  Element columns = document.querySelector('#columns');
+  
   void start() {
     
     var menuItems = document.querySelector('menu').children;
@@ -67,8 +68,8 @@ class Basics {
   
   void _resizeScreen(String strSize){
     int intSize = int.parse(strSize);
-    document.querySelector('#columns').style.setProperty('width', '${strSize}px');
-    document.querySelector('#columns').style.setProperty('margin-left', '-${intSize / 2}px');
+    columns.style.setProperty('width', '${strSize}px');
+    columns.style.setProperty('margin-left', '-${intSize / 2}px');
   }
 
   void _onClickResize(MouseEvent event) {
@@ -85,6 +86,7 @@ class Basics {
 
   void _onDragStart(MouseEvent event) {
     Element dragTarget = event.target;
+    dragTarget.style.setProperty('overflow', 'visible');
     dragTarget.classes.add('moving');
     _dragSourceEl = dragTarget;
     event.dataTransfer.effectAllowed = 'move';
