@@ -64,6 +64,10 @@ class Basics {
 
   void _save() {
     print('save');
+    var data = { 'firstName' : 'John', 'lastName' : 'Doe' };
+    HttpRequest.postFormData('http://localhost:9090/api/pet', data).then((HttpRequest resp) {
+      print(resp);
+    });
   }
 
   void _resizeScreen(String strSize) {
