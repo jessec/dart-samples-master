@@ -26,7 +26,14 @@ class Basics {
 
   void _onClickResize(MouseEvent event) {
     Element resizeTarget = event.target;
-    resizeTarget.style.setProperty('overflow', 'auto');
+    String name = resizeTarget.tagName;
+    if(name != "CONTENT"){
+      print("content");
+      resizeTarget.style.setProperty('overflow', 'auto');
+    }else{
+      resizeTarget.parent.style.setProperty('overflow', 'auto');
+    }
+    
   }
 
   void _onDragStart(MouseEvent event) {
