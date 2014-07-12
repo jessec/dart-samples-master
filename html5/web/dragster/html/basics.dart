@@ -4,7 +4,7 @@ import "package:menu/menu.dart";
 class Basics {
   Element _dragSourceEl;
   Element columns = document.querySelector('#columns');
-  String apiBaseUrl = 'http://localhost:8080/api/';
+  String apiBaseUrl = 'http://localhost:9090/api/dragster';
 
   void start() {
 
@@ -65,7 +65,9 @@ class Basics {
   void _save() {
     print('save');
     var data = { 'firstName' : 'John', 'lastName' : 'Doe' };
-    HttpRequest.postFormData('http://localhost:9090/api/pet', data).then((HttpRequest resp) {
+
+    
+    HttpRequest.postFormData('http://localhost:9090/api/dragster', data).then((HttpRequest resp) {
       print(resp);
     });
   }
