@@ -64,9 +64,12 @@ class Basics {
 
   void _save() {
     print('save');
-    var data = { 'firstName' : 'John', 'lastName' : 'Doe' };
+    var data = {
+      'firstName': 'John',
+      'lastName': 'Doe'
+    };
 
-    
+
     HttpRequest.postFormData('http://localhost:9090/api/dragster', data).then((HttpRequest resp) {
       print(resp);
     });
@@ -91,9 +94,17 @@ class Basics {
   }
 
   void _onDragStart(MouseEvent event) {
+
+    var cols = document.querySelectorAll('.content');
+    for (var content in cols) {
+      content.classes.add('hide');
+    }
+
+
     Element dragTarget = event.target;
     dragTarget.style.setProperty('overflow', 'visible');
     dragTarget.classes.add('moving');
+    dragTarget.classes.add('source');
     _dragSourceEl = dragTarget;
     event.dataTransfer.effectAllowed = 'move';
     event.dataTransfer.setData('text/html', dragTarget.innerHtml);
@@ -106,6 +117,13 @@ class Basics {
     for (var col in cols) {
       col.classes.remove('over');
     }
+
+    var contentItems = document.querySelectorAll('.content');
+    for (var content in contentItems) {
+      content.classes.remove('hide');
+    }
+
+
   }
 
   void _onDragEnter(MouseEvent event) {
@@ -126,10 +144,19 @@ class Basics {
   void _onDrop(MouseEvent event) {
     event.stopPropagation();
     Element dropTarget = event.target;
+
     if (_dragSourceEl != dropTarget) {
       _dragSourceEl.style.setProperty('overflow', 'visible');
-      _dragSourceEl.setInnerHtml(dropTarget.innerHtml, treeSanitizer: new NullTreeSanitizer());
-      dropTarget.setInnerHtml(event.dataTransfer.getData('text/html'), treeSanitizer: new NullTreeSanitizer());
+
+
+      Element container = dropTarget.children.first;
+      String tag = container.tagName;
+      String className = container.className;
+      if (tag == 'DIV' && className.startsWith('content')) {
+        _dragSourceEl.setInnerHtml(dropTarget.innerHtml, treeSanitizer: new NullTreeSanitizer());
+        dropTarget.setInnerHtml(event.dataTransfer.getData('text/html'), treeSanitizer: new NullTreeSanitizer());
+      }
+
     }
   }
 }

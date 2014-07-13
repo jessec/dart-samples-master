@@ -67,6 +67,14 @@ body {
 	transform: scale(0.8);
 }
 
+.hide{
+  height: 50% !important;
+  width: 50% !important;
+  margin-left: 25% !important;
+  margin-top: 25% !important;
+
+}
+
 #elem1 {
 	
 }
