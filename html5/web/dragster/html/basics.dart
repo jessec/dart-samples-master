@@ -95,8 +95,8 @@ class Basics {
 
   void _onDragStart(MouseEvent event) {
 
-    var cols = document.querySelectorAll('.content');
-    for (var content in cols) {
+    var contentItems = document.querySelectorAll('.content');
+    for (var content in contentItems) {
       content.classes.add('hide');
     }
 
