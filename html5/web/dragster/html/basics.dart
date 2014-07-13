@@ -83,9 +83,7 @@ class Basics {
 
   void _onClickResize(MouseEvent event) {
     Element resizeTarget = event.target;
-    String name = resizeTarget.className;
-    if (name != "content") {
-      print("content");
+    if (resizeTarget.className != "content") {
       resizeTarget.style.setProperty('overflow', 'auto');
     } else {
       resizeTarget.parent.style.setProperty('overflow', 'auto');
@@ -104,7 +102,6 @@ class Basics {
     Element dragTarget = event.target;
     dragTarget.style.setProperty('overflow', 'visible');
     dragTarget.classes.add('moving');
-    dragTarget.classes.add('source');
     _dragSourceEl = dragTarget;
     event.dataTransfer.effectAllowed = 'move';
     event.dataTransfer.setData('text/html', dragTarget.innerHtml);
@@ -144,15 +141,10 @@ class Basics {
   void _onDrop(MouseEvent event) {
     event.stopPropagation();
     Element dropTarget = event.target;
-
     if (_dragSourceEl != dropTarget) {
       _dragSourceEl.style.setProperty('overflow', 'visible');
-
-
       Element container = dropTarget.children.first;
-      String tag = container.tagName;
-      String className = container.className;
-      if (tag == 'DIV' && className.startsWith('content')) {
+      if (container.tagName == 'DIV' && container.className.startsWith('content')) {
         _dragSourceEl.setInnerHtml(dropTarget.innerHtml, treeSanitizer: new NullTreeSanitizer());
         dropTarget.setInnerHtml(event.dataTransfer.getData('text/html'), treeSanitizer: new NullTreeSanitizer());
       }
