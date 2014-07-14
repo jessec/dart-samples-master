@@ -63,6 +63,17 @@ class Basics {
   }
 
   void _save() {
+    
+    /**
+     *  get positions
+     *  var columns = document.getElementById('columns');
+     *   columns.getBoundingClientRect();
+     *   ClientRect {height: 1020, width: 320, left: 672, bottom: 1020, right: 992…}
+     *   elem4.getBoundingClientRect();
+     *   ClientRect {height: 102, width: 102, left: 672, bottom: 204, right: 774…}
+     *   var elem4 = document.getElementById('elem4');
+     ***/
+    
     print('save');
     var data = {
       'firstName': 'John',
