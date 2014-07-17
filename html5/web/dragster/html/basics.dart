@@ -88,6 +88,8 @@ class Basics {
 
   void _resizeScreen(String strSize) {
     int intSize = int.parse(strSize);
+    columns.style.setProperty('position', 'absolute');
+    columns.style.setProperty('left', '50%');
     columns.style.setProperty('width', '${strSize}px');
     columns.style.setProperty('margin-left', '-${intSize / 2}px');
   }
