@@ -100,7 +100,7 @@ body {
 	padding: 0px;
 }
 
-menu {
+#menu {
 	background-color: #000;
 	width: 100%;
 	min-height: 30px;
@@ -109,28 +109,28 @@ menu {
 }
 
 
-menu>ul>li {
+#menu>ul>li {
 	position: relative;
 	display: inline-block;
 	background: #000;
 }
 
-menu > a a:VISITED {
+#menu > a a:VISITED {
 	display: inline-block;
 	color:#fff;
 }
 
-menu>ul>li ul {
+#menu>ul>li ul {
 	display: none;
 	position: absolute;
 	top: 1em;
 }
 
-menu>ul>li:hover ul {
+#menu>ul>li:hover ul {
 	display: block;
 }
 
-menu>ul>li li {
+#menu>ul>li li {
 	display: block;
 	background: #000;
 }
@@ -149,13 +149,12 @@ menu>ul>li li {
 	resize: both;
 	overflow: auto;
 	position: relative;
-	top: 0px;
+	top: 60px;
 	left: 50%;
 	width: 960px;
 	margin-left: -480px;
 }
 
-/* Prevent the text contents of draggable elements from being selectable. */
 [draggable] {
 	-moz-user-select: none;
 	-khtml-user-select: none;

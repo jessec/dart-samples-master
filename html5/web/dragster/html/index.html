@@ -2,14 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Drag and Drop: Basics</title>
-<link rel="stylesheet" href="basics.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<title>Dragster</title>
+<link rel="stylesheet" href="basics.css"> 
 </head>
 <body>
-  <menu>
- 
- <div style="float:right;">
+
+ <div style="position:absolute; width:100%; min-height:30px;" id="menu">
+     <ul id="navigation">
+      <li><a class="menu" href="#">Page</a>
+        <ul>
+          <li><a class="menu" href="#load">Load</a></li>
+          <li><a class="menu" href="#save">Save</a></li>
+        </ul></li>
+    </ul>
     <input type="text" id="menu-hostname" list="menu-hostname-json-datalist"
       placeholder="e.g. Hostname" >
     <datalist id="menu-hostname-json-datalist"></datalist>
@@ -26,45 +31,13 @@
       placeholder="e.g. Status" >
     <datalist id="menu-status-json-datalist"></datalist>
 
-    <input type="text" id="menu-display" list="menu-status-json-datalist"
+    <input type="text" id="menu-display" list="menu-display-json-datalist"
       placeholder="e.g. Display" >
-    <datalist id="menu-status-json-datalist"></datalist>
-
+    <datalist id="menu-display-json-datalist"></datalist> 
 </div>
-    <ul id="navigation">
-      <li><a class="menu" href="#">Page</a>
-        <ul>
-          <li><a class="menu" href="#load">Load</a></li>
-          <li><a class="menu" href="#save">Save</a></li>
-        </ul></li>
-      <li><a class="menu" href="#">Hostname</a>
-        <ul>
-          <li><a class="menu" href="#hostname-localhost:9090">localhost:9090</a></li>
-          <li><a class="menu" href="#hostname-localhost:8080">localhost:8080</a></li>
-        </ul></li>
-      <li><a class="menu" href="#">Page</a>
-        <ul>
-          <li><a class="menu" href="#page-QHL2NIOYKGU1">QHL2NIOYKGU1</a></li>
-        </ul></li>
-      <li><a class="menu" href="#">Versions</a>
-        <ul>
-          <li><a class="menu" href="#version-1">1</a></li>
-        </ul></li>
 
-      <li><a class="menu" href="#">Status</a>
-        <ul>
-          <li><a class="menu" href="#status-published">published</a></li>
-        </ul></li>
-      <li><a class="menu" href="#">Window Resizer</a>
-        <ul>
-          <li><a class="menu" href="#resize-320">320</a></li>
-          <li><a class="menu" href="#resize-640">640</a></li>
-          <li><a class="menu" href="#resize-768">768</a></li>
-          <li><a class="menu" href="#resize-960">960</a></li>
-          <li><a class="menu" href="#resize-1280">1280</a></li>
-        </ul></li>
-    </ul>
-  </menu>
+
+
 
   <div id="columns" class="columns-wrapper">
     <div id="elem1" class="column" draggable="true">
