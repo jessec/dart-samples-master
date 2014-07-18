@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:convert';
 import "package:menu/menu.dart";
 
 class Basics {
@@ -6,12 +7,17 @@ class Basics {
   Element columns = document.querySelector('#columns');
   String apiBaseUrl = 'http://localhost:9090/api/dragster';
 
+  Element menuHostnameJsonDatalist = document.getElementById('menu-hostname-json-datalist');
+  Element menuHostname = document.getElementById('menu-hostname');
+
   void start() {
 
     var menuItems = document.querySelector('menu').children;
     for (var item in menuItems) {
       item.onClick.listen(_onClickMenuItem);
     }
+
+    _fillMenuItems(menuHostnameJsonDatalist, "/dragster/html/data/html-elements.json");
 
     var cols = document.querySelectorAll('#columns .column');
     for (var col in cols) {
@@ -28,6 +34,58 @@ class Basics {
     num x = widget.getX();
     print(x);
 
+  }
+
+  _fillMenuItems(Element optionList, String jsonSourceUrl) {
+
+    HttpRequest request = new HttpRequest();
+    request.onReadyStateChange.listen((_) {
+      if (request.readyState == HttpRequest.DONE && (request.status == 200 || request.status == 0)) {
+        List parsedList = JSON.decode(request.responseText);
+        for (var value in parsedList) {
+          Element option = document.createElement('option');
+          option.setAttribute('value', value);
+          optionList.append(option);
+        }
+        
+      }
+    });
+
+    var data = {
+      "id": "QHL2NIOYKGU1",
+      "host": {
+        "id": "2",
+        "name": null
+      },
+      "name": null,
+      "versions": [],
+      "currentVersion": {
+        "id": "2",
+
+        "name": null
+      },
+      "status": "available",
+      "html": null
+    };
+
+
+
+
+
+    request.open("GET", jsonSourceUrl, async: false);
+    request.send(data.toString());
+
+
+  }
+
+  void _attachDataList(String responseText, Element optionList) {
+
+    List parsedList = JSON.decode(responseText);
+    for (var value in parsedList) {
+      Element option = document.createElement('option');
+      option.setAttribute('value', value);
+      optionList.append(option);
+    }
   }
 
   void _onClickMenuItem(MouseEvent event) {
@@ -63,66 +121,39 @@ class Basics {
   }
 
   void _save() {
-    
-    /**
-     *  get positions
-     *  var columns = document.getElementById('columns');
-     *   columns.getBoundingClientRect();
-     *   ClientRect {height: 1020, width: 320, left: 672, bottom: 1020, right: 992…}
-     *   elem4.getBoundingClientRect();
-     *   ClientRect {height: 102, width: 102, left: 672, bottom: 204, right: 774…}
-     *   var elem4 = document.getElementById('elem4');
-     ***/
-    
-    print('save');
-    var data = {
-      'firstName': 'John', 
-      'lastName': 'Doe'
-    };
-    
-    
-    var tmp = {
-               "id" : "2",
-               "host" : {
-                 "id" : "2",
-                 "name" : null
-               },
-               "name" : null,
-               "versions" : [ ],
-               "currentVersion" : {
-                 "id" : "2",
 
-                 "name" : null
-               },
-               "status" : "available",
-               "html" : null
-             };
-
-
- //   HttpRequest.postFormData('http://localhost:9090/api/dragster', tmp).then((HttpRequest resp) {
-  //    print(resp);
-   // });
-    
-    
-    HttpRequest request = new HttpRequest(); // create a new XHR
-    
-    // add an event handler that is called when the request finishes
+    HttpRequest request = new HttpRequest();
     request.onReadyStateChange.listen((_) {
-      if (request.readyState == HttpRequest.DONE &&
-          (request.status == 200 || request.status == 0)) {
-        // data saved OK.
+      if (request.readyState == HttpRequest.DONE && (request.status == 200 || request.status == 0)) {
         print(request.responseText); // output the response from the server
       }
     });
 
-    // POST the data to the server
+    var data = {
+      "id": "QHL2NIOYKGU1",
+      "host": {
+        "id": "2",
+        "name": null
+      },
+      "name": null,
+      "versions": [],
+      "currentVersion": {
+        "id": "2",
+
+        "name": null
+      },
+      "status": "available",
+      "html": null
+    };
+
+
+
+
     var url = "http://localhost:9090/api/dragster";
     request.open("POST", url, async: false);
+    request.send(data.toString());
 
-    String jsonData = '{"language":"dart"}'; // etc...
-    request.send(tmp.toString()); // perform the async POST
-    
-    
+
   }
 
   void _resizeScreen(String strSize) {
