@@ -25,13 +25,14 @@ class Basics {
       item.onClick.listen(_onClickMenuItem);
     }
 
-    _fillMenuItems(menuHostnameJsonDatalist, "/dragster/html/data/hostnames.json");
-    _fillMenuItems(menuPageJsonDatalist, "/dragster/html/data/hostnames.json");
-    _fillMenuItems(menuVersionJsonDatalist, "/dragster/html/data/hostnames.json");
-    _fillMenuItems(menuStatusJsonDatalist, "/dragster/html/data/hostnames.json");
-    _fillMenuItems(menuDisplayJsonDatalist, "/dragster/html/data/hostnames.json");
+    _fillMenuInputItems(menuHostnameJsonDatalist, "/dragster/html/data/hostnames.json");
+    menuHostname.onChange.listen(_onInputMenuChange);
+    _fillMenuInputItems(menuPageJsonDatalist, "/dragster/html/data/hostnames.json");
+    _fillMenuInputItems(menuVersionJsonDatalist, "/dragster/html/data/hostnames.json");
+    _fillMenuInputItems(menuStatusJsonDatalist, "/dragster/html/data/hostnames.json");
+    _fillMenuInputItems(menuDisplayJsonDatalist, "/dragster/html/data/hostnames.json");
 
-
+    
     
 
     var cols = document.querySelectorAll('#columns .column');
@@ -50,8 +51,14 @@ class Basics {
     print(x);
 
   }
+  
+  void _onInputMenuChange(Event event){
+    InputElement inputBox = event.target;
+    String value = inputBox.value;
+    print(value);
+  }
 
-  _fillMenuItems(Element optionList, String jsonSourceUrl) {
+  void _fillMenuInputItems(Element optionList, String jsonSourceUrl) {
 
     HttpRequest request = new HttpRequest();
     request.onReadyStateChange.listen((_) {
