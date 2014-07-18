@@ -79,11 +79,50 @@ class Basics {
       'firstName': 'John', 
       'lastName': 'Doe'
     };
+    
+    
+    var tmp = {
+               "id" : "2",
+               "host" : {
+                 "id" : "2",
+                 "name" : null
+               },
+               "name" : null,
+               "versions" : [ ],
+               "currentVersion" : {
+                 "id" : "2",
+
+                 "name" : null
+               },
+               "status" : "available",
+               "html" : null
+             };
 
 
-    HttpRequest.postFormData('http://localhost:9090/api/dragster', data).then((HttpRequest resp) {
-      print(resp);
+ //   HttpRequest.postFormData('http://localhost:9090/api/dragster', tmp).then((HttpRequest resp) {
+  //    print(resp);
+   // });
+    
+    
+    HttpRequest request = new HttpRequest(); // create a new XHR
+    
+    // add an event handler that is called when the request finishes
+    request.onReadyStateChange.listen((_) {
+      if (request.readyState == HttpRequest.DONE &&
+          (request.status == 200 || request.status == 0)) {
+        // data saved OK.
+        print(request.responseText); // output the response from the server
+      }
     });
+
+    // POST the data to the server
+    var url = "http://localhost:9090/api/dragster";
+    request.open("POST", url, async: false);
+
+    String jsonData = '{"language":"dart"}'; // etc...
+    request.send(tmp.toString()); // perform the async POST
+    
+    
   }
 
   void _resizeScreen(String strSize) {
