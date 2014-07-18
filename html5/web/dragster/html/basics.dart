@@ -32,7 +32,7 @@ class Basics {
 
   void _onClickMenuItem(MouseEvent event) {
     Element menuTarget = event.target;
-    switch (menuTarget.innerHtml) {
+    switch (menuTarget.innerHtml.trim().toLowerCase()) {
       case '320':
         _resizeScreen('320');
         break;
@@ -76,7 +76,7 @@ class Basics {
     
     print('save');
     var data = {
-      'firstName': 'John',
+      'firstName': 'John', 
       'lastName': 'Doe'
     };
 
