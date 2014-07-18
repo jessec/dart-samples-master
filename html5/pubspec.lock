@@ -28,7 +28,7 @@ packages:
   code_transformers:
     description: code_transformers
     source: hosted
-    version: "0.1.4+2"
+    version: "0.1.5"
   collection:
     description: collection
     source: hosted
@@ -48,7 +48,7 @@ packages:
   hop:
     description: hop
     source: hosted
-    version: "0.31.0"
+    version: "0.31.0+1"
   html5lib:
     description: html5lib
     source: hosted
@@ -59,7 +59,7 @@ packages:
     version: "0.9.1+1"
   menu:
     description:
-      path: "web/dragster/html/menu"
+      path: "web\\dragster\\html\\menu"
       relative: true
     source: path
     version: "0.0.0"
@@ -86,7 +86,7 @@ packages:
   source_maps:
     description: source_maps
     source: hosted
-    version: "0.9.2+3"
+    version: "0.9.3"
   stack_trace:
     description: stack_trace
     source: hosted
