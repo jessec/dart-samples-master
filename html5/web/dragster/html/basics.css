@@ -86,9 +86,9 @@ input, select {
 	vertical-align: middle
 }
 /*
-  Copyright (c) 2012, the Dart project authors.  Please see the AUTHORS file
-  for details. All rights reserved. Use of this source code is governed by a
-  BSD-style license that can be found in the COPYING file.
+
+  Custom design
+  
 */
 body {
 	background-color: #F8F8F8;
@@ -123,7 +123,7 @@ body {
 #menu>ul>li ul {
 	display: none;
 	position: absolute;
-	top: 1em;
+	top: 20px;
 }
 
 #menu>ul>li:hover ul {
@@ -133,6 +133,7 @@ body {
 #menu>ul>li li {
 	display: block;
 	background: #000;
+	padding:5px;
 }
 
 .menu {
@@ -166,23 +167,14 @@ body {
 	background-color: #ccc;
 	cursor: move;
 	float: left;
-	text-align: center;
-	-webkit-transition: -webkit-transform 0.2s ease-out;
-	-moz-transition: -moz-transform 0.2s ease-out;
-	-ms-transition: -moz-transform 0.2s ease-out;
-	transition: transform 0.2s ease-out;
 	border: 1px solid black;
 	resize: both;
-	_overflow: overlay;
 	height: 100px;
 	width: 100px;
 	padding: 0px;
 	margin: 0px;
 }
 
-.column header {
-	
-}
 
 .column.over {
 	border: 2px dashed #000;

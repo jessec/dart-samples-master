@@ -3,86 +3,89 @@
 <head>
 <meta charset="utf-8">
 <title>Dragster</title>
-<link rel="stylesheet" href="basics.css"> 
+<link rel="stylesheet" href="basics.css">
 </head>
 <body>
 
- <div style="position:absolute; width:100%; min-height:30px;" id="menu">
-     <ul id="navigation">
-      <li><a class="menu" href="#">Page</a>
-        <ul>
-          <li><a class="menu" href="#load">Load</a></li>
-          <li><a class="menu" href="#save">Save</a></li>
-        </ul></li>
-    </ul>
-    <input type="text" id="menu-hostname" list="menu-hostname-json-datalist"
-      placeholder="e.g. Hostname" >
-    <datalist id="menu-hostname-json-datalist"></datalist>
+	<div style="position: absolute; width: 100%; min-height: 30px;"
+		id="menu">
+		<ul id="navigation" style="position:absolute;padding-top:10px;padding-left:20px;">
+			<li><a class="menu" href="#">Page</a>
+				<ul>
+					<li><a class="menu" href="#load">Load</a></li>
+					<li><a class="menu" href="#save">Save</a></li>
+				</ul></li>
+		</ul>
+		<div style="float: right;">
+			<input type="text" id="menu-hostname"
+				list="menu-hostname-json-datalist" placeholder="e.g. Hostname">
+			<datalist id="menu-hostname-json-datalist"></datalist>
 
-    <input type="text" id="menu-page" list="menu-page-json-datalist"
-      placeholder="e.g. Page" >
-    <datalist id="menu-page-json-datalist"></datalist>
+			<input type="text" id="menu-page" list="menu-page-json-datalist"
+				placeholder="e.g. Page">
+			<datalist id="menu-page-json-datalist"></datalist>
 
-    <input type="text" id="menu-version" list="menu-version-json-datalist"
-      placeholder="e.g. Version" >
-    <datalist id="menu-version-json-datalist"></datalist>
-    
-    <input type="text" id="menu-status" list="menu-status-json-datalist"
-      placeholder="e.g. Status" >
-    <datalist id="menu-status-json-datalist"></datalist>
+			<input type="text" id="menu-version"
+				list="menu-version-json-datalist" placeholder="e.g. Version">
+			<datalist id="menu-version-json-datalist"></datalist>
 
-    <input type="text" id="menu-display" list="menu-display-json-datalist"
-      placeholder="e.g. Display" >
-    <datalist id="menu-display-json-datalist"></datalist> 
-</div>
+			<input type="text" id="menu-status" list="menu-status-json-datalist"
+				placeholder="e.g. Status">
+			<datalist id="menu-status-json-datalist"></datalist>
 
-
-
-
-  <div id="columns" class="columns-wrapper">
-    <div id="elem1" class="column" draggable="true">
-      <div class="content"
-        style="display: block; height: 100%; width: 100%; background: red; position: static;">
-        <header>A</header>
-      </div>
-    </div>
-    <div id="elem2" class="column" draggable="true">
-      <div class="content"
-        style="display: block; height: 100%; width: 100%; background: red; position: static;">
-        <header>B</header>
-      </div>
-    </div>
-    <div id="elem3" class="column" draggable="true">
-
-      <div class="content"
-        style="display: block; height: 100%; width: 100%; background: red; position: static;">
-        <p>content</p>
-        <p>content</p>
-        <p>content</p>
-      </div>
-    </div>
-    <div id="elem4" class="column" draggable="true">
-      <div class="content"
-        style="display: block; height: 100%; width: 100%; background: red; position: static;">
-        <header>D</header>
-      </div>
-    </div>
-    <div id="elem5" class="column" draggable="true">
-      <div class="content"
-        style="display: block; height: 100%; width: 100%; background: red; position: static;">
-        <header>E</header>
-      </div>
-    </div>
-    <div id="elem6" class="column" draggable="true">
-      <div class="content"
-        style="display: block; height: 100%; width: 100%; background: red; position: static;">
-        <header>F</header>
-      </div>
-    </div>
-  </div>
+			<input type="text" id="menu-display"
+				list="menu-display-json-datalist" placeholder="e.g. Display">
+			<datalist id="menu-display-json-datalist"></datalist>
+		</div>
+	</div>
 
 
-  <script type="application/dart" src="basics.dart"></script>
-  <script src="packages/browser/dart.js"></script>
+
+
+	<div id="columns" class="columns-wrapper">
+		<div id="elem1" class="column" draggable="true">
+			<div class="content"
+				style="display: block; height: 100%; width: 100%; background: red; position: static;">
+				<header>A</header>
+			</div>
+		</div>
+		<div id="elem2" class="column" draggable="true">
+			<div class="content"
+				style="display: block; height: 100%; width: 100%; background: red; position: static;">
+				<header>B</header>
+			</div>
+		</div>
+		<div id="elem3" class="column" draggable="true">
+
+			<div class="content"
+				style="display: block; height: 100%; width: 100%; background: red; position: static;">
+				<p>content</p>
+				<p>content</p>
+				<p>content</p>
+			</div>
+		</div>
+		<div id="elem4" class="column" draggable="true">
+			<div class="content"
+				style="display: block; height: 100%; width: 100%; background: red; position: static;">
+				<header>D</header>
+			</div>
+		</div>
+		<div id="elem5" class="column" draggable="true">
+			<div class="content"
+				style="display: block; height: 100%; width: 100%; background: red; position: static;">
+				<header>E</header>
+			</div>
+		</div>
+		<div id="elem6" class="column" draggable="true">
+			<div class="content"
+				style="display: block; height: 100%; width: 100%; background: red; position: static;">
+				<header>F</header>
+			</div>
+		</div>
+	</div>
+
+
+	<script type="application/dart" src="basics.dart"></script>
+	<script src="packages/browser/dart.js"></script>
 </body>
 </html>
