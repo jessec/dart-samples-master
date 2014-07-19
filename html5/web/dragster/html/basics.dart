@@ -20,7 +20,13 @@ class Basics {
   Element menuStatus = document.getElementById('menu-status');
   Element menuDisplayJsonDatalist = document.getElementById('menu-display-json-datalist');
   Element menuDisplay = document.getElementById('menu-display');
-  List<Element> menuInputItems = new List(5);
+  Element menuUseragentJsonDatalist = document.getElementById('menu-useragent-json-datalist');
+  Element menuUseragent = document.getElementById('menu-useragent');
+  Element menuPeriodJsonDatalist = document.getElementById('menu-period-json-datalist');
+  Element menuPeriod = document.getElementById('menu-period');
+  Element menuPercentageJsonDatalist = document.getElementById('menu-percentage-json-datalist');
+  Element menuPercentage = document.getElementById('menu-percentage');
+  List<Element> menuInputItems = new List(8);
  
   
   void start() {
@@ -33,6 +39,9 @@ class Basics {
     menuInputItems[2] = menuVersion;
     menuInputItems[3] = menuStatus;
     menuInputItems[4] = menuDisplay;
+    menuInputItems[5] = menuUseragent;
+    menuInputItems[6] = menuPeriod;
+    menuInputItems[7] = menuPercentage;
     
     for(var item in menuInputItems){
       //menuHostname.onDoubleClick.listen(_onInputMenuChange); maybe better
@@ -49,6 +58,9 @@ class Basics {
     _fillMenuInputItems(menuVersionJsonDatalist, "/dragster/html/data/versions.json");
     _fillMenuInputItems(menuStatusJsonDatalist, "/dragster/html/data/status.json");
     _fillMenuInputItems(menuDisplayJsonDatalist, "/dragster/html/data/displays.json");
+    _fillMenuInputItems(menuUseragentJsonDatalist, "/dragster/html/data/useragents.json");
+    _fillMenuInputItems(menuPeriodJsonDatalist, "/dragster/html/data/periods.json");
+    _fillMenuInputItems(menuPercentageJsonDatalist, "/dragster/html/data/percentages.json");
 
     
     
