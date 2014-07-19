@@ -17,20 +17,32 @@ class Basics {
   Element menuStatus = document.getElementById('menu-status');
   Element menuDisplayJsonDatalist = document.getElementById('menu-display-json-datalist');
   Element menuDisplay = document.getElementById('menu-display');
-
+  List<Element> menuInputItems = new List(5);
+ 
+  
   void start() {
 
+    menuInputItems[0] = menuHostname;
+    menuInputItems[1] = menuPageJson;
+    menuInputItems[2] = menuVersion;
+    menuInputItems[3] = menuStatus;
+    menuInputItems[4] = menuDisplay;
+    
+    for(var item in menuInputItems){
+      //menuHostname.onDoubleClick.listen(_onInputMenuChange); maybe better
+      item.onInput.listen(_onInputMenuChange);
+    }
+    
     var menuItems = document.querySelector('#menu').children;
     for (var item in menuItems) {
       item.onClick.listen(_onClickMenuItem);
     }
 
     _fillMenuInputItems(menuHostnameJsonDatalist, "/dragster/html/data/hostnames.json");
-    menuHostname.onChange.listen(_onInputMenuChange);
-    _fillMenuInputItems(menuPageJsonDatalist, "/dragster/html/data/hostnames.json");
-    _fillMenuInputItems(menuVersionJsonDatalist, "/dragster/html/data/hostnames.json");
-    _fillMenuInputItems(menuStatusJsonDatalist, "/dragster/html/data/hostnames.json");
-    _fillMenuInputItems(menuDisplayJsonDatalist, "/dragster/html/data/hostnames.json");
+    _fillMenuInputItems(menuPageJsonDatalist, "/dragster/html/data/pages.json");
+    _fillMenuInputItems(menuVersionJsonDatalist, "/dragster/html/data/versions.json");
+    _fillMenuInputItems(menuStatusJsonDatalist, "/dragster/html/data/status.json");
+    _fillMenuInputItems(menuDisplayJsonDatalist, "/dragster/html/data/displays.json");
 
     
     
