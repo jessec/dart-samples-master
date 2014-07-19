@@ -100,6 +100,10 @@ body {
 	padding: 0px;
 }
 
+.display-none {
+	display:none;
+}
+
 #menu {
 	background-color: #000;
 	width: 100%;

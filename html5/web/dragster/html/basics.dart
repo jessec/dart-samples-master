@@ -5,6 +5,9 @@ import "package:menu/menu.dart";
 class Basics {
   Element _dragSourceEl;
   Element columns = document.querySelector('#columns');
+  Element showMenu = document.querySelector('#show-menu');
+  Element pageSelector = document.querySelector('#page-selector');
+    
   String apiBaseUrl = 'http://localhost:9090/api/dragster';
 
   Element menuHostnameJsonDatalist = document.getElementById('menu-hostname-json-datalist');
@@ -21,6 +24,9 @@ class Basics {
  
   
   void start() {
+    
+    showMenu.onClick.listen(_showMenu);
+    _redrawTop('#columns', '#menu');
 
     menuInputItems[0] = menuHostname;
     menuInputItems[1] = menuPageJson;
@@ -62,6 +68,18 @@ class Basics {
     num x = widget.getX();
     print(x);
 
+  }
+  
+  void _showMenu(Event event){
+    Element menuButton = event.target;
+    
+    pageSelector.classes.toggle('display-none');
+    _redrawTop('#columns', '#menu');
+  }
+  
+  void _redrawTop(String target, String source){
+    String height = (document.querySelector(source).borderEdge.height + 30 ).toString() + 'px';
+    document.querySelector(target).style.setProperty('top', height);
   }
   
   void _onInputMenuChange(Event event){
