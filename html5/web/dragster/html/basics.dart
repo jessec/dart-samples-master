@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'dart:convert';
 import "package:menu/menu.dart";
+//import "package:nedb/nedb.dart";
 
 class Basics {
   Element _dragSourceEl;
@@ -82,6 +83,12 @@ class Basics {
     Widget widget = new WidgetImpl();
     num x = widget.getX();
     print(x);
+    
+    //Nedb nedb = new Nedb();
+    //var db = nedb.getDb();
+    
+    //print(db);
+    
 
   }
   

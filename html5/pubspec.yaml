@@ -8,8 +8,5 @@ dependencies:
   browser: any
   hop: any
   html5lib: any
-  path: any
-  polymer: any
-  vector_math: any
   menu:
     path: web/dragster/html/lib/menu/
