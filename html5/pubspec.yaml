@@ -6,9 +6,8 @@ environment:
   sdk: '>=0.6.17'
 dependencies:
   browser: any
-  nedb:
-    path: web/dragster/html/lib/nedb/
   hop: any
   html5lib: any
-#  menu:
-#    path: web/dragster/html/lib/menu/
+  json_object: any
+  nedb:
+    path: web/dragster/html/lib/nedb/

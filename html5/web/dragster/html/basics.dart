@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'dart:convert';
 import 'dart:js';
+import "package:json_object/json_object.dart";
 //import "package:menu/menu.dart";
 import "package:nedb/nedb.dart";
 
@@ -88,9 +89,24 @@ class Basics {
     Nedb nedb = new Nedb();
     JsObject db = nedb.getDb();
     
-    print(db);
+    var data = new JsonObject();
+      data.language = "Dart";
+      data.targets = new List();
+      data.targets.add("Dartium");
+    
+    db.callMethod('insert', [data]);
     
 
+    var crit = new JsonObject();
+    crit.language = "Dart";
+
+    db.callMethod('count', [crit, _calb]);
+    
+
+  }
+  
+  void _calb(err, count){
+    print("Number of items found : " + count.toString());
   }
   
   void _showMenu(Event event){
