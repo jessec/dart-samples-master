@@ -76,7 +76,7 @@ class Basics {
       col.onDragOver.listen(_onDragOver);
       col.onDragLeave.listen(_onDragLeave);
       col.onDrop.listen(_onDrop);
-      col.onClick.listen(_onClickResize);
+      col.onDoubleClick.listen(_onClickResize);
     }
 
     Widget widget = new WidgetImpl();
@@ -233,13 +233,15 @@ class Basics {
   }
 
   void _onClickResize(MouseEvent event) {
-    Element resizeTarget = event.target;
-    if (resizeTarget.className != "content") {
-      resizeTarget.style.setProperty('overflow', 'auto');
-    } else {
-      resizeTarget.parent.style.setProperty('overflow', 'auto');
+    _setResizeOnColumn(event.target);
+  }
+  
+  void _setResizeOnColumn(Element currentElement){
+    if(currentElement.className == "column"){
+        currentElement.style.setProperty('overflow', 'auto');
+    }else{
+        _setResizeOnColumn(currentElement.parent);
     }
-
   }
 
   void _onDragStart(MouseEvent event) {
