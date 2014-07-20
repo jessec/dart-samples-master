@@ -7,9 +7,9 @@
 </head>
 <body>
 
-	<section style="position: absolute; width: 100%; min-height: 30px; "
+	<section style="position: fixed; width: 100%; min-height: 30px; z-index:9999;"
 		id="menu">
-		<ul id="navigation" style="position:absolute;padding-top:7px;padding-left:20px;">
+		<ul id="navigation-primary" style="position:absolute;top:7px;padding-left:20px; z-index:99;">
 			<li><a class="menu" href="#">Account</a>
 				<ul>
 					<li><a class="menu" href="#edit">Edit</a></li>
@@ -17,6 +17,14 @@
 				</ul></li>
 				<li><a class="menu" href="#save">Save</a></li>
 		</ul>
+	  <ul id="navigation-secondary" style="position:absolute;top:45px;padding-left:20px;">
+      <li><a class="menu" href="#">Account</a>
+        <ul>
+          <li><a class="menu" href="#edit">Edit</a></li>
+          <li><a class="menu" href="#logout">Logout</a></li>
+        </ul></li>
+        <li><a class="menu" href="#save">Save</a></li>
+    </ul>
 		<div id="page-selector" style=" float:right; width: 470px; text-align:right; margin-right:30px;">
 			<input type="text" id="menu-hostname" style="width:200px; margin-right: 1px;"
 				list="menu-hostname-json-datalist" placeholder="e.g. Hostname">
@@ -34,13 +42,13 @@
 				placeholder="e.g. Status">
 			<datalist id="menu-status-json-datalist"></datalist>
 
+      <input type="text" id="menu-useragent" style="margin-right: -1px;"
+        list="menu-useragent-json-datalist" placeholder="e.g. Useragent">
+      <datalist id="menu-useragent-json-datalist"></datalist>
+
 			<input type="text" id="menu-display" style="margin-right: -1px;"
 				list="menu-display-json-datalist" placeholder="e.g. Display">
 			<datalist id="menu-display-json-datalist"></datalist>
-			
-			<input type="text" id="menu-useragent" style="margin-right: -1px;"
-        list="menu-useragent-json-datalist" placeholder="e.g. Useragent">
-      <datalist id="menu-useragent-json-datalist"></datalist>
       
       <input type="text" id="menu-period" style="margin-right: -1px;"
         list="menu-period-json-datalist" placeholder="e.g. Period">
@@ -51,7 +59,7 @@
       <datalist id="menu-percentage-json-datalist"></datalist>
       
 		</div>
-		<div id="show-menu" style="width:20px;height:20px; background:red;position:absolute;"></div>
+		<div id="show-menu" style="width:20px;height:20px; background:red;position:absolute;z-index:999;"></div>
 	</section>
 
 

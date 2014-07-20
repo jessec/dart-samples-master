@@ -7,6 +7,9 @@ class Basics {
   Element columns = document.querySelector('#columns');
   Element showMenu = document.querySelector('#show-menu');
   Element pageSelector = document.querySelector('#page-selector');
+  Element menuSecondary = document.querySelector('#navigation-secondary');
+    
+  
     
   String apiBaseUrl = 'http://localhost:9090/api/dragster';
 
@@ -86,6 +89,7 @@ class Basics {
     Element menuButton = event.target;
     
     pageSelector.classes.toggle('display-none');
+    menuSecondary.classes.toggle('display-none');
     _redrawTop('#columns', '#menu');
   }
   
