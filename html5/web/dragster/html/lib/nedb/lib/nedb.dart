@@ -1,16 +1,22 @@
 library nedb;
 
+import 'dart:js';
+
+
+
 class Nedb {
   
   
   
   Nedb() {
     
-
-//   nedb =  new JsObject(context['Nedb']);
+    
     
     }
   
-
+  JsObject getDb(){
+    var  nedb =  new JsObject(context['Nedb']);
+    return nedb;
+  }
   
 }

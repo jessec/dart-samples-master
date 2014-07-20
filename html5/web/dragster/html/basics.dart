@@ -1,7 +1,8 @@
 import 'dart:html';
 import 'dart:convert';
-import "package:menu/menu.dart";
-//import "package:nedb/nedb.dart";
+import 'dart:js';
+//import "package:menu/menu.dart";
+import "package:nedb/nedb.dart";
 
 class Basics {
   Element _dragSourceEl;
@@ -80,14 +81,14 @@ class Basics {
       col.onDoubleClick.listen(_onClickResize);
     }
 
-    Widget widget = new WidgetImpl();
-    num x = widget.getX();
-    print(x);
+    //Widget widget = new WidgetImpl();
+    //num x = widget.getX();
+    //print(x);
     
-    //Nedb nedb = new Nedb();
-    //var db = nedb.getDb();
+    Nedb nedb = new Nedb();
+    JsObject db = nedb.getDb();
     
-    //print(db);
+    print(db);
     
 
   }

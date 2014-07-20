@@ -45,9 +45,9 @@ packages:
     description: logging
     source: hosted
     version: "0.9.1+1"
-  menu:
+  nedb:
     description:
-      path: "web/dragster/html/lib/menu"
+      path: "web/dragster/html/lib/nedb"
       relative: true
     source: path
     version: "0.0.0"
