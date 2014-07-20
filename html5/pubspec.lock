@@ -59,7 +59,7 @@ packages:
     version: "0.9.1+1"
   menu:
     description:
-      path: "web/dragster/html/menu"
+      path: "web/dragster/html/lib/menu"
       relative: true
     source: path
     version: "0.0.0"

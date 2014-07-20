@@ -12,4 +12,4 @@ dependencies:
   polymer: any
   vector_math: any
   menu:
-    path: web/dragster/html/menu/
+    path: web/dragster/html/lib/menu/
