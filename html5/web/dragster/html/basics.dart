@@ -115,35 +115,39 @@ class Basics {
     
     var jsonString = responseText;
     var doc = parse(jsonString);
-    var html = doc.querySelector('div');
+    var html = doc.querySelector('body');
 
-    String widget = html.attributes['data-widget'];
-
-    print(html.innerHtml); 
-
-    for (Element item in columItems) {
+    var contentDivs = html.querySelectorAll('.content');
+    
+    for(var div in contentDivs){
       
-      try {
-        var child = item.children.first;
+      String widget = div.attributes['data-widget'];
+
+      print(div.innerHtml); 
+
+      for (Element item in columItems) {
         
-        var wdgt = child.attributes['data-widget'];
-        
-        if(wdgt == widget){
-          item.setInnerHtml(html.outerHtml, treeSanitizer: new NullTreeSanitizer());
-          print('ok');
+        try {
+          var child = item.children.first;
+          
+          var wdgt = child.attributes['data-widget'];
+          
+          if(wdgt == widget){
+            item.setInnerHtml(div.outerHtml, treeSanitizer: new NullTreeSanitizer());
+            print('ok');
+          }
+          
+          print(wdgt);
+        } catch(exception, stackTrace) {
+
         }
-        
-        print(wdgt);
-      } catch(exception, stackTrace) {
+
 
       }
-
-
-//        if(item.firstChild.attributes[''] == widget){
-  //        item.setInnerHtml(html.innerHtml, treeSanitizer: new NullTreeSanitizer());
-    //    }
-      print('');
+      
     }
+    
+
 
   }
 
