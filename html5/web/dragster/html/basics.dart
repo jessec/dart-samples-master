@@ -2,7 +2,6 @@ import 'dart:html';
 import 'dart:convert';
 import 'dart:js';
 import "package:json_object/json_object.dart";
-//import "package:menu/menu.dart";
 import "package:nedb/nedb.dart";
 
 class Basics {
@@ -50,7 +49,6 @@ class Basics {
     menuInputItems[7] = menuPercentage;
     
     for(var item in menuInputItems){
-      //menuHostname.onDoubleClick.listen(_onInputMenuChange); maybe better
       item.onInput.listen(_onInputMenuChange);
     }
     
@@ -82,10 +80,6 @@ class Basics {
       col.onDoubleClick.listen(_onClickResize);
     }
 
-    //Widget widget = new WidgetImpl();
-    //num x = widget.getX();
-    //print(x);
-    
     Nedb nedb = new Nedb();
     JsObject db = nedb.getDb();
     
