@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'package:html5lib/parser.dart' show parse;
 import 'dart:convert';
 import 'dart:js';
 import "package:json_object/json_object.dart";
@@ -7,12 +8,13 @@ import "package:nedb/nedb.dart";
 class Basics {
   Element _dragSourceEl;
   Element columns = document.querySelector('#columns');
+  List<Element> columItems = document.querySelectorAll('#columns .column');
   Element showMenu = document.querySelector('#show-menu');
   Element pageSelector = document.querySelector('#page-selector');
   Element menuSecondary = document.querySelector('#navigation-secondary');
-    
-  
-    
+
+
+
   String apiBaseUrl = 'http://localhost:9090/api/dragster';
 
   Element menuHostnameJsonDatalist = document.getElementById('menu-hostname-json-datalist');
@@ -32,10 +34,20 @@ class Basics {
   Element menuPercentageJsonDatalist = document.getElementById('menu-percentage-json-datalist');
   Element menuPercentage = document.getElementById('menu-percentage');
   List<Element> menuInputItems = new List(8);
- 
-  
+
+
+
+
   void start() {
-    
+
+    var dataSource = columns.dataset['source'];
+    var url = "http://127.0.0.1:8080/programming-languages";
+    var request = HttpRequest.getString(dataSource).then(onDataLoaded);
+
+
+
+
+
     showMenu.onClick.listen(_showMenu);
     _redrawTop('#columns', '#menu');
 
@@ -47,11 +59,11 @@ class Basics {
     menuInputItems[5] = menuUseragent;
     menuInputItems[6] = menuPeriod;
     menuInputItems[7] = menuPercentage;
-    
-    for(var item in menuInputItems){
+
+    for (var item in menuInputItems) {
       item.onInput.listen(_onInputMenuChange);
     }
-    
+
     var menuItems = document.querySelector('#menu').children;
     for (var item in menuItems) {
       item.onClick.listen(_onClickMenuItem);
@@ -66,11 +78,11 @@ class Basics {
     _fillMenuInputItems(menuPeriodJsonDatalist, "/dragster/html/data/periods.json");
     _fillMenuInputItems(menuPercentageJsonDatalist, "/dragster/html/data/percentages.json");
 
-    
-    
 
-    var cols = document.querySelectorAll('#columns .column');
-    for (var col in cols) {
+
+
+
+    for (var col in columItems) {
       col.onDragStart.listen(_onDragStart);
       col.onDragEnd.listen(_onDragEnd);
       col.onDragEnter.listen(_onDragEnter);
@@ -82,41 +94,77 @@ class Basics {
 
     Nedb nedb = new Nedb();
     JsObject db = nedb.getDb();
-    
+
     var data = new JsonObject();
-      data.language = "Dart";
-      data.targets = new List();
-      data.targets.add("Dartium");
-    
+    data.language = "Dart";
+    data.targets = new List();
+    data.targets.add("Dartium");
+
     db.callMethod('insert', [data]);
-    
+
 
     var crit = new JsonObject();
     crit.language = "Dart";
 
     db.callMethod('count', [crit, _calb]);
-    
+
 
   }
-  
-  void _calb(err, count){
+
+  void onDataLoaded(String responseText) {
+    
+    var jsonString = responseText;
+    var doc = parse(jsonString);
+    var html = doc.querySelector('div');
+
+    String widget = html.attributes['data-widget'];
+
+    print(html.innerHtml); 
+
+    for (Element item in columItems) {
+      
+      try {
+        var child = item.children.first;
+        
+        var wdgt = child.attributes['data-widget'];
+        
+        if(wdgt == widget){
+          item.setInnerHtml(html.outerHtml, treeSanitizer: new NullTreeSanitizer());
+          print('ok');
+        }
+        
+        print(wdgt);
+      } catch(exception, stackTrace) {
+
+      }
+
+
+//        if(item.firstChild.attributes[''] == widget){
+  //        item.setInnerHtml(html.innerHtml, treeSanitizer: new NullTreeSanitizer());
+    //    }
+      print('');
+    }
+
+  }
+
+  void _calb(err, count) {
     print("Number of items found : " + count.toString());
   }
-  
-  void _showMenu(Event event){
+
+  void _showMenu(Event event) {
     Element menuButton = event.target;
-    
+
     pageSelector.classes.toggle('display-none');
     menuSecondary.classes.toggle('display-none');
     _redrawTop('#columns', '#menu');
   }
-  
-  void _redrawTop(String target, String source){
-    String height = (document.querySelector(source).borderEdge.height + 30 ).toString() + 'px';
+
+  void _redrawTop(String target, String source) {
+    String height = (document.querySelector(source).borderEdge.height + 30).toString() + 'px';
     document.querySelector(target).style.setProperty('top', height);
   }
-  
-  void _onInputMenuChange(Event event){
+
+  void _onInputMenuChange(Event event) {
     InputElement inputBox = event.target;
     String value = inputBox.value;
     print(value);
@@ -133,7 +181,7 @@ class Basics {
           option.setAttribute('value', value);
           optionList.append(option);
         }
-        
+
       }
     });
 
@@ -253,12 +301,12 @@ class Basics {
   void _onClickResize(MouseEvent event) {
     _setResizeOnColumn(event.target);
   }
-  
-  void _setResizeOnColumn(Element currentElement){
-    if(currentElement.className == "column"){
-        currentElement.style.setProperty('overflow', 'auto');
-    }else{
-        _setResizeOnColumn(currentElement.parent);
+
+  void _setResizeOnColumn(Element currentElement) {
+    if (currentElement.className == "column") {
+      currentElement.style.setProperty('overflow', 'auto');
+    } else {
+      _setResizeOnColumn(currentElement.parent);
     }
   }
 
@@ -327,6 +375,17 @@ class Basics {
 void main() {
   var basics = new Basics();
   basics.start();
+}
+
+class NullNodeValidator implements NodeValidator {
+
+  bool allowsAttribute(Element element, String attributeName, String value) {
+    return true;
+  }
+
+  bool allowsElement(Element element) {
+    return true;
+  }
 }
 
 class NullTreeSanitizer implements NodeTreeSanitizer {
