@@ -170,6 +170,16 @@ class Basics {
 
   void _onInputMenuChange(Event event) {
     InputElement inputBox = event.target;
+    inputBox.id;
+    switch (inputBox.id) {
+      case 'menu-display':
+        _resizeScreen(inputBox.value);
+        break;
+      case '640':
+        _resizeScreen('640');
+        break;
+    }
+    
     String value = inputBox.value;
     print(value);
   }
