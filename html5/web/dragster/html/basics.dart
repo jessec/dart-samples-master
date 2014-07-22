@@ -7,60 +7,55 @@ import "package:nedb/nedb.dart";
 
 class Basics {
   Element _dragSourceEl;
-  Element columns = document.querySelector('#columns');
-  List<Element> columItems = document.querySelectorAll('#columns .column');
-  Element showMenu = document.querySelector('#show-menu');
-  Element pageSelector = document.querySelector('#page-selector');
-  Element menuSecondary = document.querySelector('#navigation-secondary');
+  Element _columns = document.querySelector('#columns');
+  List<Element> _columItems = document.querySelectorAll('#columns .column');
+  Element _showMenuElement = document.querySelector('#show-menu');
+  Element _pageSelector = document.querySelector('#page-selector');
+  Element _menuSecondary = document.querySelector('#navigation-secondary');
 
 
 
-  String apiBaseUrl = 'http://localhost:9090/api/dragster';
+  String _apiBaseUrl = 'http://localhost:9090/api/dragster';
 
-  Element menuHostnameJsonDatalist = document.getElementById('menu-hostname-json-datalist');
-  Element menuHostname = document.getElementById('menu-hostname');
-  Element menuPageJsonDatalist = document.getElementById('menu-page-json-datalist');
-  Element menuPageJson = document.getElementById('menu-page');
-  Element menuVersionJsonDatalist = document.getElementById('menu-version-json-datalist');
-  Element menuVersion = document.getElementById('menu-version');
-  Element menuStatusJsonDatalist = document.getElementById('menu-status-json-datalist');
-  Element menuStatus = document.getElementById('menu-status');
-  Element menuDisplayJsonDatalist = document.getElementById('menu-display-json-datalist');
-  Element menuDisplay = document.getElementById('menu-display');
-  Element menuUseragentJsonDatalist = document.getElementById('menu-useragent-json-datalist');
-  Element menuUseragent = document.getElementById('menu-useragent');
-  Element menuPeriodJsonDatalist = document.getElementById('menu-period-json-datalist');
-  Element menuPeriod = document.getElementById('menu-period');
-  Element menuPercentageJsonDatalist = document.getElementById('menu-percentage-json-datalist');
-  Element menuPercentage = document.getElementById('menu-percentage');
-  List<Element> menuInputItems = new List(8);
+  Element _menuHostnameJsonDatalist = document.getElementById('menu-hostname-json-datalist');
+  Element _menuHostname = document.getElementById('menu-hostname');
+  Element _menuPageJsonDatalist = document.getElementById('menu-page-json-datalist');
+  Element _menuPageJson = document.getElementById('menu-page');
+  Element _menuVersionJsonDatalist = document.getElementById('menu-version-json-datalist');
+  Element _menuVersion = document.getElementById('menu-version');
+  Element _menuStatusJsonDatalist = document.getElementById('menu-status-json-datalist');
+  Element _menuStatus = document.getElementById('menu-status');
+  Element _menuDisplayJsonDatalist = document.getElementById('menu-display-json-datalist');
+  Element _menuDisplay = document.getElementById('menu-display');
+  Element _menuUseragentJsonDatalist = document.getElementById('menu-useragent-json-datalist');
+  Element _menuUseragent = document.getElementById('menu-useragent');
+  Element _menuPeriodJsonDatalist = document.getElementById('menu-period-json-datalist');
+  Element _menuPeriod = document.getElementById('menu-period');
+  Element _menuPercentageJsonDatalist = document.getElementById('menu-percentage-json-datalist');
+  Element _menuPercentage = document.getElementById('menu-percentage');
+  List<Element> _menuInputItems = new List(8);
 
 
 
 
   void start() {
 
-    var dataSource = columns.dataset['source'];
-    var url = "http://127.0.0.1:8080/programming-languages";
-    var request = HttpRequest.getString(dataSource).then(onDataLoaded);
+    var dataSource = _columns.dataset['source'];
+    var request = HttpRequest.getString(dataSource).then(_onDataLoaded);
 
-
-
-
-
-    showMenu.onClick.listen(_showMenu);
+    _showMenuElement.onClick.listen(_showMenu);
     _redrawTop('#columns', '#menu');
 
-    menuInputItems[0] = menuHostname;
-    menuInputItems[1] = menuPageJson;
-    menuInputItems[2] = menuVersion;
-    menuInputItems[3] = menuStatus;
-    menuInputItems[4] = menuDisplay;
-    menuInputItems[5] = menuUseragent;
-    menuInputItems[6] = menuPeriod;
-    menuInputItems[7] = menuPercentage;
+    _menuInputItems[0] = _menuHostname;
+    _menuInputItems[1] = _menuPageJson;
+    _menuInputItems[2] = _menuVersion;
+    _menuInputItems[3] = _menuStatus;
+    _menuInputItems[4] = _menuDisplay;
+    _menuInputItems[5] = _menuUseragent;
+    _menuInputItems[6] = _menuPeriod;
+    _menuInputItems[7] = _menuPercentage;
 
-    for (var item in menuInputItems) {
+    for (var item in _menuInputItems) {
       item.onInput.listen(_onInputMenuChange);
     }
 
@@ -69,20 +64,20 @@ class Basics {
       item.onClick.listen(_onClickMenuItem);
     }
 
-    _fillMenuInputItems(menuHostnameJsonDatalist, "/dragster/html/data/hostnames.json");
-    _fillMenuInputItems(menuPageJsonDatalist, "/dragster/html/data/pages.json");
-    _fillMenuInputItems(menuVersionJsonDatalist, "/dragster/html/data/versions.json");
-    _fillMenuInputItems(menuStatusJsonDatalist, "/dragster/html/data/status.json");
-    _fillMenuInputItems(menuDisplayJsonDatalist, "/dragster/html/data/displays.json");
-    _fillMenuInputItems(menuUseragentJsonDatalist, "/dragster/html/data/useragents.json");
-    _fillMenuInputItems(menuPeriodJsonDatalist, "/dragster/html/data/periods.json");
-    _fillMenuInputItems(menuPercentageJsonDatalist, "/dragster/html/data/percentages.json");
+    _fillMenuInputItems(_menuHostnameJsonDatalist, "/dragster/html/data/hostnames.json");
+    _fillMenuInputItems(_menuPageJsonDatalist, "/dragster/html/data/pages.json");
+    _fillMenuInputItems(_menuVersionJsonDatalist, "/dragster/html/data/versions.json");
+    _fillMenuInputItems(_menuStatusJsonDatalist, "/dragster/html/data/status.json");
+    _fillMenuInputItems(_menuDisplayJsonDatalist, "/dragster/html/data/displays.json");
+    _fillMenuInputItems(_menuUseragentJsonDatalist, "/dragster/html/data/useragents.json");
+    _fillMenuInputItems(_menuPeriodJsonDatalist, "/dragster/html/data/periods.json");
+    _fillMenuInputItems(_menuPercentageJsonDatalist, "/dragster/html/data/percentages.json");
 
 
 
 
 
-    for (var col in columItems) {
+    for (var col in _columItems) {
       col.onDragStart.listen(_onDragStart);
       col.onDragEnd.listen(_onDragEnd);
       col.onDragEnter.listen(_onDragEnter);
@@ -107,48 +102,24 @@ class Basics {
     crit.language = "Dart";
 
     db.callMethod('count', [crit, _calb]);
-
-
   }
 
-  void onDataLoaded(String responseText) {
-    
-    var jsonString = responseText;
-    var doc = parse(jsonString);
-    var html = doc.querySelector('body');
+  void _onDataLoaded(String responseText) {
 
+    var html = parse(responseText).querySelector('body');
     var contentDivs = html.querySelectorAll('.content');
-    
-    for(var div in contentDivs){
-      
-      String widget = div.attributes['data-widget'];
 
-      print(div.innerHtml); 
-
-      for (Element item in columItems) {
-        
+    for (var div in contentDivs) {
+      String widget = div.attributes['data-widget']; // add to widget list
+      for (Element item in _columItems) {
         try {
-          var child = item.children.first;
-          
-          var wdgt = child.attributes['data-widget'];
-          
-          if(wdgt == widget){
+          if (item.children.first.attributes['data-widget'] == widget) {
             item.setInnerHtml(div.outerHtml, treeSanitizer: new NullTreeSanitizer());
-            print('ok');
           }
-          
-          print(wdgt);
-        } catch(exception, stackTrace) {
-
+        } catch (exception, stackTrace) {
         }
-
-
       }
-      
     }
-    
-
-
   }
 
   void _calb(err, count) {
@@ -157,9 +128,8 @@ class Basics {
 
   void _showMenu(Event event) {
     Element menuButton = event.target;
-
-    pageSelector.classes.toggle('display-none');
-    menuSecondary.classes.toggle('display-none');
+    _pageSelector.classes.toggle('display-none');
+    _menuSecondary.classes.toggle('display-none');
     _redrawTop('#columns', '#menu');
   }
 
@@ -170,18 +140,14 @@ class Basics {
 
   void _onInputMenuChange(Event event) {
     InputElement inputBox = event.target;
-    inputBox.id;
     switch (inputBox.id) {
       case 'menu-display':
         _resizeScreen(inputBox.value);
         break;
-      case '640':
-        _resizeScreen('640');
+      case 'menu-version':
         break;
     }
-    
-    String value = inputBox.value;
-    print(value);
+    print(inputBox.value);
   }
 
   void _fillMenuInputItems(Element optionList, String jsonSourceUrl) {
@@ -216,13 +182,8 @@ class Basics {
       "html": null
     };
 
-
-
-
-
     request.open("GET", jsonSourceUrl, async: false);
     request.send(data.toString());
-
 
   }
 
@@ -294,9 +255,6 @@ class Basics {
       "html": null
     };
 
-
-
-
     var url = "http://localhost:9090/api/dragster";
     request.open("POST", url, async: false);
     request.send(data.toString());
@@ -306,10 +264,10 @@ class Basics {
 
   void _resizeScreen(String strSize) {
     int intSize = int.parse(strSize);
-    columns.style.setProperty('position', 'relative');
-    columns.style.setProperty('left', '50%');
-    columns.style.setProperty('width', '${strSize}px');
-    columns.style.setProperty('margin-left', '-${intSize / 2}px');
+    _columns.style.setProperty('position', 'relative');
+    _columns.style.setProperty('left', '50%');
+    _columns.style.setProperty('width', '${strSize}px');
+    _columns.style.setProperty('margin-left', '-${intSize / 2}px');
   }
 
   void _onClickResize(MouseEvent event) {
@@ -392,11 +350,9 @@ void main() {
 }
 
 class NullNodeValidator implements NodeValidator {
-
   bool allowsAttribute(Element element, String attributeName, String value) {
     return true;
   }
-
   bool allowsElement(Element element) {
     return true;
   }
