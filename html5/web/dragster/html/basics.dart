@@ -38,7 +38,7 @@ class Basics {
 
 
 
-  void start() {
+  void _start() {
 
     var dataSource = _columns.dataset['source'];
     var request = HttpRequest.getString(dataSource).then(_onDataLoaded);
@@ -346,7 +346,7 @@ class Basics {
 
 void main() {
   var basics = new Basics();
-  basics.start();
+  basics._start();
 }
 
 class NullNodeValidator implements NodeValidator {
