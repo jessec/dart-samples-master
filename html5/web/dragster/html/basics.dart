@@ -3,7 +3,9 @@ import 'package:html5lib/parser.dart' show parse;
 import 'dart:convert';
 import 'dart:js';
 import "package:json_object/json_object.dart";
-import "package:nedb/nedb.dart";
+
+import '../../lib/menu.dart';
+import '../../lib/nedb.dart';
 
 class Basics {
   Element _dragSourceEl;
@@ -40,6 +42,8 @@ class Basics {
 
   void _start() {
 
+    Widget tmpWidget = new WidgetImpl();
+    
     var dataSource = _columns.dataset['source'];
     var request = HttpRequest.getString(dataSource).then(_onDataLoaded);
 

@@ -1,4 +1,0 @@
-name: nedb
-description: nedb javascript database
-dependencies:
-  js: any

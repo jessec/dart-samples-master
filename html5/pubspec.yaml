@@ -9,5 +9,4 @@ dependencies:
   hop: any
   html5lib: any
   json_object: any
-  nedb:
-    path: web/dragster/html/lib/nedb/
+  js: any
