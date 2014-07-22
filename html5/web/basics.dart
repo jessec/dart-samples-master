@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'dart:js';
 import "package:json_object/json_object.dart";
 
-import '../../lib/menu.dart';
-import '../../lib/nedb.dart';
+import 'lib/menu.dart';
+import 'lib/nedb.dart';
 
 class Basics {
   Element _dragSourceEl;
